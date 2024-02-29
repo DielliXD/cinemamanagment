@@ -1,0 +1,47 @@
+<div class="create-movie-form">
+  <form [formGroup]="createMovieForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" id="title" formControlName="title" required>
+      <div *ngIf="createMovieForm.get('title').touched && createMovieForm.get('title').errors">
+        <small class="text-danger" *ngIf="createMovieForm.get('title').errors['required']">
+          Title is required.
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <select id="categoryId" formControlName="categoryId" required>
+        <option *ngFor="let category of categoryList" [value]="category.id">{{ category.name }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="releasedate">Release Date:</label>
+      <input type="text" id="releasedate" formControlName="releasedate" required>
+      <div *ngIf="createMovieForm.get('releasedate').touched && createMovieForm.get('releasedate').errors">
+        <small class="text-danger" *ngIf="createMovieForm.get('releasedate').errors['required']">
+          Release Date is required.
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="director">Director:</label>
+      <input type="text" id="director" formControlName="director" required>
+      <div *ngIf="createMovieForm.get('director').touched && createMovieForm.get('director').errors">
+        <small class="text-danger" *ngIf="createMovieForm.get('director').errors['required']">
+          Director is required.
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="image">Image:</label>
+      <input type="url" id="image" formControlName="image" required>
+      <div *ngIf="createMovieForm.get('image').touched && createMovieForm.get('image').errors">
+        <small class="text-danger" *ngIf="createMovieForm.get('image').errors['required']">
+          Image is required.
+        </small>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!createMovieForm.valid">Create Movie</button>
+  </form>
+</div>
